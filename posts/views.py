@@ -5,6 +5,8 @@ from .forms import PostForm
 from django.core.paginator import Paginator
 from users.forms import User
 from django.db.models import Count
+from django.contrib.auth.decorators import login_required
+
 
 def index(request):
     post_list = Post.objects.order_by('-pub_date').all()
@@ -19,6 +21,7 @@ def group_post(request, slug):
     posts = Post.objects.filter(group=group).order_by("-pub_date")[:12]  
     return render(request, "group.html", {"group": group, "posts": posts})
 
+@login_required
 def new_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
@@ -60,4 +63,4 @@ def post_edit(request, username, post_id):
     else:
         form = PostForm(instance=post) 
         print("qwerty")
-        return render(request, "post_new.html", {"form": form})
+        return render(request, "new.html", {"form": form, 'post':post})
