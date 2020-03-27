@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'hw04_tests.settings'
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
