@@ -50,17 +50,21 @@ def post_view(request, username, post_id):
     return render(request, "post.html", {'post_user':post_user, 'username':username, 'count_post':count_post, 'post_id':post_id})
 
 def post_edit(request, username, post_id):
-    post = get_object_or_404(Post, pk=post_id)
-    if request.method == 'POST':
-        form = PostForm(request.POST, instance=post)
-        print("qwerty")
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.save()
-            print("qwerty")
+    
+        post = get_object_or_404(Post, pk=post_id)
+        if post.author == username:
+            if request.method == 'POST':
+                form = PostForm(request.POST, instance=post)
+                print("qwerty")
+            if form.is_valid():
+                    post = form.save(commit=False)
+                    post.author = request.user
+                    post.save()
+                    print("qwerty")
+                    return redirect("post", username)
+            else:
+                form = PostForm(instance=post) 
+                print("qwerty")
+                return render(request, "new.html", {"form": form, 'post':post})
+        else:
             return redirect("profile", username)
-    else:
-        form = PostForm(instance=post) 
-        print("qwerty")
-        return render(request, "new.html", {"form": form, 'post':post})
