@@ -35,7 +35,7 @@ def new_post(request):
             return redirect("index")
     else:
         form = PostForm()
-        return render(request, "new.html", {"form": form})
+    return render(request, "new.html", {"form": form})
 
 def profile(request, username):
     persons = Post.objects.filter(author__username=username)
