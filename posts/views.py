@@ -50,8 +50,9 @@ def profile(request, username):
 def post_view(request, username, post_id):
     author = get_object_or_404(User, username=username)
     post_user = Post.objects.filter(author__username=username).filter(pk=post_id)
-    count_post = Post.objects.filter(author__username=username).count()  
-    return render(request, "post.html", {'post_user':post_user, 'username':username, 'count_post':count_post, 'post_id':post_id, 'author':author})
+    count_post = Post.objects.filter(author__username=username).count() 
+    post = Post.objects.get(id=post_id) 
+    return render(request, "post.html", {'post_user':post_user, 'username':username, 'count_post':count_post, 'post_id':post_id, 'author':author, 'post':post})
 
 def post_edit(request, username, post_id):
     post = get_object_or_404(Post, pk=post_id)
