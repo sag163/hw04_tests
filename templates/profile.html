@@ -1,12 +1,8 @@
-{% load bootstrap3 %}
-<script src="{% bootstrap_jquery_url %}"></script>
-{% bootstrap_javascript %}
-{% bootstrap_css %}
+{% extends "base.html" %}
+{% block title %} Блог автора {{author.get_full_name}} {% endblock %}
+{% block content %}
 <main role="main" class="container">
         <div class="row">
-
-                {% include 'nav.html' %}
-                {% load bootstrap3 %}
                 <div class="col-md-3 mb-3 mt-1">
                         <div class="card">
                                 <div class="card-body">
@@ -63,7 +59,7 @@
                         {% endfor %}
                     <!-- Конец блока с отдельным постом --> 
                     <!-- Остальные посты -->   
-                        {% if page.has_other_pages %}
+                {% if page.has_other_pages %}
                         {% include "paginator.html" with items=page paginator=paginator%}
                 {% endif %}
                     <!-- Здесь постраничная навигация паджинатора -->
@@ -72,3 +68,4 @@
         </div>
         {% include 'footer.html' %}
     </main>
+    {% endblock %}

@@ -1,21 +1,28 @@
 {% extends "base.html" %}
+{% block title %} Редактирование поста {% endblock %}
 
-{% block title %}{% if post %}Редактировать запись{% else %}Новая запись{% endif %}{% endblock %}
-{% block content %}
-
+ {% block content %}
 {% if post %}
-<form method="post" action="{% url 'new_post' %}">
-    {% else %}
-    <form method="post"%}"></form>
-    {% endif %} 
-    {% csrf_token %}
-    {{ form.as_p }}
-    {% if post %}
-    <input type="submit" value="Сохранить запись">
-    {% else %}
-    <input type="submit" value="Добавить запись">
-    {% endif %} 
-</form>
+
+    <h3>Редактирование поста</h3>
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">
+            Сохранить пост
+    </button>
+    </form>
+
+{% else %}
+
+    <h3>Создание нового поста</h3>
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">
+            Создать пост
+    </button>
+    </form>
+    
+{% endif %}
 {% endblock %}
-
-

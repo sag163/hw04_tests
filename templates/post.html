@@ -1,7 +1,6 @@
-{% load bootstrap3 %}
-<script src="{% bootstrap_jquery_url %}"></script>
-{% bootstrap_javascript %}
-{% bootstrap_css %}
+{% extends "base.html" %}
+{% block title %} Блог автора {{author.get_full_name}} {% endblock %}
+{% block content %}
 <main role="main" class="container">
         <div class="row">
                 <div class="col-md-3 mb-3 mt-1">
@@ -61,3 +60,4 @@
          </div>
         </div>
     </main>
+    {% endblock %}
