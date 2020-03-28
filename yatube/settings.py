@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'users',
     'group',
     'posts',
-    'bootstrap3',
     "django.contrib.sites",
     "django.contrib.flatpages",
     'django.contrib.admin',
