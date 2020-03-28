@@ -13,7 +13,7 @@
                                     </div>
                                     <div class="h3 text-muted">
                                          <!-- username автора -->
-                                         @{{ author.username }}
+                                         @{{ username }}
                                     </div>
                             </div>
                             <ul class="list-group list-group-flush">
@@ -36,6 +36,7 @@
             <div class="col-md-9">
     
                 <!-- Пост -->  
+                {% for item in post_user %}
                     <div class="card mb-3 mt-1 shadow-sm">
                             <div class="card-body">
                                     <p class="card-text">
@@ -52,6 +53,7 @@
                                             </div>
                                             <!-- Дата публикации  -->
                                             <small class="text-muted">{{ item.pub_date }}</small>
+                                            {% endfor %}
                                     </div>
                                     
                             </div>
